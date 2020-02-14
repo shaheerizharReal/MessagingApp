@@ -13,7 +13,7 @@ import { useLogin } from '../Services/authenticationService';
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(8),
+        margin: theme.spacing(15,90),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -24,7 +24,20 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: 'HotPink',
+        width:'20px',
+        marginLeft:'170px'
+
     },
+    signup: {
+        color: 'HotPink',
+    },
+    textField: {
+        width: '100%',
+        height: '10px',
+        padding: '22px 20px',
+        border: '2px solid #ccc',
+    }
 }));
 
 const Login = props => {
@@ -36,7 +49,7 @@ const Login = props => {
             <Grid container>
                 <Grid item>
                     <Typography component="h1" variant="h5" align="center">
-                        Sign in
+                        Use Your Credentials
                     </Typography>
                     <Formik
                         initialValues={{
@@ -82,7 +95,7 @@ const Login = props => {
                                 onSubmit={handleSubmit}
                                 className={classes.form}
                             >
-                                <TextField
+                                <input type="text"
                                     id="username"
                                     className={classes.textField}
                                     name="username"
@@ -94,6 +107,7 @@ const Login = props => {
                                     helperText={
                                         touched.username ? errors.username : ''
                                     }
+                                    placeholder="USERNAME"
                                     error={
                                         touched.username &&
                                         Boolean(errors.username)
@@ -101,11 +115,12 @@ const Login = props => {
                                     value={values.username}
                                     onChange={handleChange}
                                 />
-                                <TextField
+                                <input type="password"
                                     id="password"
                                     className={classes.textField}
                                     name="password"
                                     label="Password"
+                                    placeholder="PASSWORD"
                                     fullWidth={true}
                                     variant="outlined"
                                     margin="normal"
@@ -118,8 +133,7 @@ const Login = props => {
                                         Boolean(errors.password)
                                     }
                                     value={values.password}
-                                    onChange={handleChange}
-                                    type="password"
+                                    onChange={handleChange} 
                                 />
                                 <Button
                                     type="submit"
@@ -129,18 +143,19 @@ const Login = props => {
                                     className={classes.submit}
                                 >
                                     Login
-                                </Button>
+                                </Button><span><Link  
+                            href="/register"
+                            class={classes.signup}
+                        >
+                            Don't have an account?
+                        </Link></span>
                             </form>
                         )}
                     </Formik>
                 </Grid>
                 <Grid item xs={9}>
                     <Typography>
-                        <Link  
-                            href="/register"
-                        >
-                            Don't have an account?
-                        </Link>
+                        
                     </Typography>
                 </Grid>
             </Grid>
@@ -149,3 +164,4 @@ const Login = props => {
 };
 
 export default Login;
+

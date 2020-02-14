@@ -13,7 +13,7 @@ import { useRegister } from '../Services/authenticationService';
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(8),
+        margin: theme.spacing(15,90),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -24,7 +24,21 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: 'HotPink',
+        width:'20px',
+        marginLeft:'170px'
+
     },
+    signin: {
+        color: 'HotPink'
+    },
+    textField: {
+        width: '100%',
+        height: '5px',
+        paddingTop: '5px',
+        padding: '22px 20px',
+        border: '2px solid #ccc',
+    }
 }));
 
 const Register = props => {
@@ -37,7 +51,7 @@ const Register = props => {
             <Grid container>
                 <Grid item>
                     <Typography component="h1" variant="h5" align="center">
-                        Register
+                        Sign Up
                     </Typography>
                     <Formik
                         initialValues={{
@@ -98,9 +112,10 @@ const Register = props => {
                                 onSubmit={handleSubmit}
                                 className={classes.form}
                             >
-                                <TextField
+                                <input type="text"
                                     id="name"
                                     className={classes.textField}
+                                    placeholder="Enter Name"
                                     name="name"
                                     label="Name"
                                     fullWidth={true}
@@ -113,9 +128,10 @@ const Register = props => {
                                     onChange={handleChange}
                                 />
 
-                                <TextField
+                                <input type="text"
                                     id="username"
                                     className={classes.textField}
+                                    placeholder="Enter Username"
                                     name="username"
                                     label="Username"
                                     fullWidth={true}
@@ -133,9 +149,10 @@ const Register = props => {
                                     onChange={handleChange}
                                 />
 
-                                <TextField
+                                <input type="password"
                                     id="password"
                                     className={classes.textField}
+                                    placeholder="Enter Password"
                                     name="password"
                                     label="Password"
                                     fullWidth={true}
@@ -151,12 +168,12 @@ const Register = props => {
                                     }
                                     value={values.password}
                                     onChange={handleChange}
-                                    type="password"
                                 />
 
-                                <TextField
+                                <input type="password"
                                     id="password2"
                                     className={classes.textField}
+                                    placeholder="Enter Confirm Password"
                                     name="password2"
                                     label="Confirm Password"
                                     fullWidth={true}
@@ -174,7 +191,6 @@ const Register = props => {
                                     }
                                     value={values.password2}
                                     onChange={handleChange}
-                                    type="password"
                                 />
 
                                 <Button
@@ -186,18 +202,21 @@ const Register = props => {
                                 >
                                     Register
                                 </Button>
+                                <span>
+                                <Link
+                            href="/login"
+                            class={classes.signin}
+                        >
+                            Already have an account?
+                        </Link>
+                                </span>
                             </form>
                         )}
                     </Formik>
                 </Grid>
                 <Grid item xs={9}>
                     <Typography>
-                        <Link
-                            onClick={() => props.handleClick('login')}
-                            href="#"
-                        >
-                            Already have an account?
-                        </Link>
+                        
                     </Typography>
                 </Grid>
             </Grid>

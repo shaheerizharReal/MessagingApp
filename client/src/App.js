@@ -8,9 +8,9 @@ import { SnackbarProvider } from 'notistack';
 import history from './Utilities/history';
 import PrivateRoute from './Utilities/private-route';
 import Home from './Home/Home';
-import Main from './Home/Main'
 import Login from './Home/Login';
 import Register from './Home/Register';
+import Main from './Home/Main';
 import Chat from './Chat/Chat';
 
 const theme = createMuiTheme({

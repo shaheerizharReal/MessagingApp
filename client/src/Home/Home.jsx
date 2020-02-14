@@ -6,7 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import { authenticationService } from '../Services/authenticationService';
 
-const Home = (props) => {
+const Home = () => {
     const [page, setPage] = useState('login');
 
     useEffect(() => {

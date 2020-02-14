@@ -83,7 +83,7 @@ const Conversations = props => {
             </ListItem>
             <Divider />
 
-            {conversations && (
+            {conversations.length > 0 && (
                 <React.Fragment>
                     {conversations.map(c => (
                         <ListItem

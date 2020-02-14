@@ -129,7 +129,7 @@ const ChatBox = props => {
             <Grid item xs={12}>
                 <Grid container className={classes.messageContainer}>
                     <Grid item xs={12} className={classes.messagesRow}>
-                        {messages && (
+                        {messages.lenth > 0 && (
                             <List>
                                 {messages.map(m => (
                                     <ListItem
