@@ -8,7 +8,7 @@ import Register from "./Register";
 import { Link } from "react-router-dom";
 import { authenticationService } from "../Services/authenticationService";
 const btn1 = {
-    border: '5px solid pink',
+    border: '5px solid HotPink',
     display: 'table',
     padding: '6px',
     paddingRight: '22px',
@@ -16,7 +16,7 @@ const btn1 = {
     
   };
   const btn2 = {
-    border: '5px solid pink',
+    border: '5px solid HotPink',
     display: 'table',
     padding: '6px',
     marginTop: '10px',

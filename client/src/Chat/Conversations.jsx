@@ -68,22 +68,22 @@ const Conversations = props => {
             <ListItem
                 classes={{ root: classes.subheader }}
                 onClick={() => {
-                    props.setScope('Global Chat');
+                    props.setScope('BroadCast Message');
                 }}
             >
                 <ListItemAvatar>
                     <Avatar className={classes.globe}>
-                        <LanguageIcon />
+                        {/* <LanguageIcon /> */}
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText
                     className={classes.subheaderText}
-                    primary="Global Chat"
+                    primary="BroadCast Message"
                 />
             </ListItem>
             <Divider />
 
-            {conversations.length > 0 && (
+            {conversations && (
                 <React.Fragment>
                     {conversations.map(c => (
                         <ListItem

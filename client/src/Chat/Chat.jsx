@@ -5,9 +5,10 @@ import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Modal from 'react-awesome-modal';
 import Header from '../Layout/Header';
 import ChatBox from './ChatBox';
+import ModalChatBox from './ModalChatbox';
 import Conversations from './Conversations';
 import Users from './Users';
 
@@ -15,6 +16,8 @@ const useStyles = makeStyles(theme => ({
     paper: {
         minHeight: 'calc(100vh - 64px)',
         borderRadius: 0,
+        color: 'HotPink',
+        backgroundColor: '#FFFFCC'
     },
     sidebar: {
         zIndex: 8,
@@ -30,25 +33,47 @@ const useStyles = makeStyles(theme => ({
     subheaderText: {
         color: theme.palette.primary.dark,
     },
+    close: {
+        marginLeft:'465px'
+    },
 }));
 
 const Chat = () => {
-    const [scope, setScope] = useState('Global Chat');
+    const [scope, setScope] = useState('BroadCast Message');
     const [tab, setTab] = useState(0);
     const [user, setUser] = useState(null);
-    const classes = useStyles();
+    const [visible, setVisible] = useState(false);
+    const classes = useStyles(); 
 
     const handleChange = (e, newVal) => {
-        setTab(newVal);
+        if(newVal == 1){
+            setTab(newVal);
+            setVisible(true);
+        }
+        else{
+            setTab(newVal);
+            setVisible(false);
+        }
+        
+
     };
+    const closeModal = () => {
+        setVisible(false);
+    }
 
     return (
         <React.Fragment>
             <Header />
+            <Modal visible={visible} width="500" height="400" effect="fadeInUp" onClickAway={closeModal}>
+                    <div>
+                        <a href="javascript:void(0);" className={classes.close} onClick={closeModal}>X</a>
+                        <ModalChatBox scope={scope} user={user} />
+                    </div>
+                </Modal>
             <Grid container>
                 <Grid item md={4} className={classes.sidebar}>
                     <Paper className={classes.paper} square elevation={5}>
-                        <Paper square>
+                        <Paper square style={{backgroundColor:"#ffcccc"}}>
                             <Tabs
                                 onChange={handleChange}
                                 variant="fullWidth"
@@ -56,17 +81,17 @@ const Chat = () => {
                                 indicatorColor="primary"
                                 textColor="primary"
                             >
-                                <Tab label="Chats" />
-                                <Tab label="Users" />
+                                <Tab label="Private Chat" />
+                                <Tab label="New BroadCast" />
                             </Tabs>
                         </Paper>
-                        {tab === 0 && (
+                        {tab === 1 && (
                             <Conversations
                                 setUser={setUser}
                                 setScope={setScope}
                             />
                         )}
-                        {tab === 1 && (
+                        {tab === 0 && (
                             <Users setUser={setUser} setScope={setScope} />
                         )}
                     </Paper>
@@ -75,6 +100,7 @@ const Chat = () => {
                     <ChatBox scope={scope} user={user} />
                 </Grid>
             </Grid>
+            
         </React.Fragment>
     );
 };

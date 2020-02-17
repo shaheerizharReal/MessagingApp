@@ -18,7 +18,7 @@ export function useGetGlobalMessages() {
         )
             .then(handleResponse)
             .catch(() =>
-                enqueueSnackbar('Could not load Global Chat', {
+                enqueueSnackbar('Could not load BroadCast Message', {
                     variant: 'error',
                 })
             );

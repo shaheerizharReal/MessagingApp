@@ -16,18 +16,18 @@ import Chat from './Chat/Chat';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: '#58a5f0',
-            main: '#0277bd',
-            dark: '#004c8c',
+            light: '#FF69B4',
+            main: '#FF69B4',
+            dark: '#FF69B4',
         },
         secondary: {
-            light: '#ffd95a',
-            main: '#f9a825',
-            dark: '#c17900',
-            contrastText: '#212121',
+            light: '#FF69B4',
+            main: '#FF69B4',
+            dark: '#FF69B4',
+            contrastText: '#FF69B4',
         },
         background: {
-            default: '#f0f0f0',
+            default: '#FFB6C1',
         },
     },
     typography: {

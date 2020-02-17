@@ -65,18 +65,18 @@ const Register = props => {
                                 .required('Name is required')
                                 .max(40, 'Too Long!'),
                             username: Yup.string()
-                                .required('Username is required')
+                                .required('Username is a required field')
                                 .max(40, 'Username address too long'),
                             password: Yup.string()
-                                .required('Password is Required')
-                                .max(100, 'Password too long')
+                                .required('Password Field is Required')
+                                .max(100, 'Password Field is too long')
                                 .min(
                                     6,
-                                    'Password should be at least 6 characters long'
+                                    'Your Password should be at least 6 characters long'
                                 ),
                             password2: Yup.string().oneOf(
                                 [Yup.ref('password'), null],
-                                'Passwords do not match'
+                                'Your Passwords do not match'
                             ),
                         })}
                         onSubmit={(
@@ -122,7 +122,6 @@ const Register = props => {
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={touched.name ? errors.name : ''}
                                     error={touched.name && Boolean(errors.name)}
                                     value={values.name}
                                     onChange={handleChange}
@@ -138,13 +137,6 @@ const Register = props => {
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={
-                                        touched.username ? errors.username : ''
-                                    }
-                                    error={
-                                        touched.username &&
-                                        Boolean(errors.username)
-                                    }
                                     value={values.username}
                                     onChange={handleChange}
                                 />
@@ -159,13 +151,6 @@ const Register = props => {
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={
-                                        touched.password ? errors.password : ''
-                                    }
-                                    error={
-                                        touched.password &&
-                                        Boolean(errors.password)
-                                    }
                                     value={values.password}
                                     onChange={handleChange}
                                 />
@@ -180,11 +165,6 @@ const Register = props => {
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={
-                                        touched.password2
-                                            ? errors.password2
-                                            : ''
-                                    }
                                     error={
                                         touched.password2 &&
                                         Boolean(errors.password2)

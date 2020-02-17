@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ChatBox = props => {
+const ModalChatBox = props => {
     const [newMessage, setNewMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [lastMessage, setLastMessage] = useState(null);
@@ -73,36 +73,6 @@ const ChatBox = props => {
 
     let chatBottom = useRef(null);
     const classes = useStyles();
-
-    useEffect(() => {
-        reloadMessages();
-        scrollToBottom();
-    }, [lastMessage, props.scope, props.conversationId]);
-
-    useEffect(() => {
-        const socket = socketIOClient(process.env.REACT_APP_API_URL);
-        socket.on('messages', data => setLastMessage(data));
-    }, []);
-
-    const reloadMessages = () => {
-        if (props.scope === 'BroadCast Message') {
-            getGlobalMessages().then(res => {
-                setMessages(res);
-            });
-        } else if (props.scope !== null && props.conversationId !== null) {
-            getConversationMessages(props.user._id).then(res =>
-                setMessages(res)
-            );
-        } else {
-            setMessages([]);
-        }
-    };
-
-    const scrollToBottom = () => {
-        chatBottom.current.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    useEffect(scrollToBottom, [messages]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -119,43 +89,10 @@ const ChatBox = props => {
 
     return (
         <Grid container className={classes.root}>
-            <Grid item xs={12} className={classes.headerRow}>
-                <Paper className={classes.paper} square elevation={2} style={{backgroundColor:"#ffcccc"}}>
-                    <Typography color="inherit" variant="h6">
-                        {props.scope}
-                    </Typography>
-                </Paper>
-            </Grid>
+            
             <Grid item xs={12}>
                 <Grid container className={classes.messageContainer}>
-                    <Grid item xs={12} className={classes.messagesRow}>
-                        {messages && (
-                            <List>
-                                {messages.map(m => (
-                                    <ListItem
-                                        key={m._id}
-                                        className={classes.listItem}
-                                        alignItems="flex-start"
-                                    >
-                                        <ListItemAvatar
-                                            className={classes.avatar}
-                                        >
-                                            <Avatar>H</Avatar>
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary={m.fromObj[0].name}
-                                            secondary={
-                                                <React.Fragment>
-                                                    {m.body}
-                                                </React.Fragment>
-                                            }
-                                        />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        )}
-                        <div ref={chatBottom} />
-                    </Grid>
+                    
                     <Grid item xs={12} className={classes.inputRow}>
                         <form onSubmit={handleSubmit} className={classes.form}>
                             <Grid
@@ -190,4 +127,4 @@ const ChatBox = props => {
     );
 };
 
-export default ChatBox;
+export default ModalChatBox;

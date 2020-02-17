@@ -63,7 +63,7 @@ const Login = props => {
                             password: Yup.string()
                                 .required('Password is required')
                                 .max(100, 'Password is too long')
-                                .min(6, 'Password too short'),
+                                .min(6, 'Password must be minimum 6 characters'),
                         })}
                         onSubmit={(
                             { username, password },
@@ -100,18 +100,11 @@ const Login = props => {
                                     className={classes.textField}
                                     name="username"
                                     label="Username"
-                                    fullWidth={true}
+                                    
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={
-                                        touched.username ? errors.username : ''
-                                    }
                                     placeholder="USERNAME"
-                                    error={
-                                        touched.username &&
-                                        Boolean(errors.username)
-                                    }
                                     value={values.username}
                                     onChange={handleChange}
                                 />
@@ -121,17 +114,9 @@ const Login = props => {
                                     name="password"
                                     label="Password"
                                     placeholder="PASSWORD"
-                                    fullWidth={true}
                                     variant="outlined"
                                     margin="normal"
                                     required={true}
-                                    helperText={
-                                        touched.password ? errors.password : ''
-                                    }
-                                    error={
-                                        touched.password &&
-                                        Boolean(errors.password)
-                                    }
                                     value={values.password}
                                     onChange={handleChange} 
                                 />
@@ -145,7 +130,7 @@ const Login = props => {
                                     Login
                                 </Button><span><Link  
                             href="/register"
-                            class={classes.signup}
+                            className={classes.signup}
                         >
                             Don't have an account?
                         </Link></span>
